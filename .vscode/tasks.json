@@ -1,0 +1,49 @@
+{
+  // Terminal → Exécuter la tâche…  ·  Ctrl+Maj+B démarre l'exercice.
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "▶ Démarrer l'exercice",
+      "detail": "Base neuve, horloge à 09:00 (./lancer.sh)",
+      "type": "shell",
+      "command": "./lancer.sh",
+      "group": { "kind": "build", "isDefault": true },
+      "presentation": { "panel": "dedicated", "reveal": "always", "clear": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "▶ Mode recette (10 h)",
+      "type": "shell",
+      "command": "./lancer.sh recette",
+      "presentation": { "panel": "dedicated", "reveal": "always", "clear": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "🧪 Tests d'une séance",
+      "type": "shell",
+      "command": "php artisan test --group=${input:groupe}",
+      "options": { "cwd": "${workspaceFolder}/projetLaravel" },
+      "group": "test",
+      "presentation": { "panel": "shared", "reveal": "always", "clear": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "🧪 Tous les tests",
+      "type": "shell",
+      "command": "php artisan test",
+      "options": { "cwd": "${workspaceFolder}/projetLaravel" },
+      "group": "test",
+      "presentation": { "panel": "shared", "reveal": "always", "clear": true },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "groupe",
+      "type": "pickString",
+      "description": "Quel groupe de tests ?",
+      "options": ["socle", "seance-01", "seance-02", "seance-03", "seance-04", "seance-05", "seance-06", "seance-07", "seance-08", "bonus", "etudiant"],
+      "default": "socle"
+    }
+  ]
+}

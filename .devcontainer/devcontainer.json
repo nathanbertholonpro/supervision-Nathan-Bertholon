@@ -1,0 +1,42 @@
+{
+  "name": "📡 Centre de supervision — Laravel · MySQL",
+
+  // Trois conteneurs décrits dans docker-compose.yml ; VS Code s'attache à « app »
+  "dockerComposeFile": ["../docker-compose.yml"],
+  "service": "app",
+  "workspaceFolder": "/workspace",
+
+  // Installe les dépendances, crée .env, la base, les données et démarre l'exercice.
+  // Le script peut être relancé sans risque (idempotent).
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+
+  // Rappel des commandes à chaque ouverture du Codespace.
+  "postAttachCommand": "bash .devcontainer/bienvenue.sh",
+
+  // Apache sert l'application sur 8000 ; phpMyAdmin sur 8080.
+  "forwardPorts": [8000, 8080],
+  "portsAttributes": {
+    "8000": { "label": "📡 Centre de supervision", "onAutoForward": "notify" },
+    "8080": { "label": "🗄️ phpMyAdmin", "onAutoForward": "silent" }
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bmewburn.vscode-intelephense-client",
+        "onecentlin.laravel-blade",
+        "xdebug.php-debug",
+        "MehediDracula.php-namespace-resolver",
+        "github.vscode-github-actions",
+        "editorconfig.editorconfig"
+      ],
+      "settings": {
+        "php.validate.executablePath": "/usr/local/bin/php",
+        "editor.formatOnSave": false,
+        "files.exclude": { "**/vendor": true },
+        "terminal.integrated.cwd": "/workspace/projetLaravel",
+        "emmet.includeLanguages": { "blade": "html" }
+      }
+    }
+  }
+}

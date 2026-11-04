@@ -1,0 +1,373 @@
+{
+  "description": "Sevranne Datacenter (fictif) : composants, services et clients, contrats (registre d'informations DORA), notifications prévues.",
+  "organisation": {
+    "nom": "Sevranne Datacenter",
+    "effectif": 180,
+    "chiffre_affaires": 32000000,
+    "statut_nis2": "entité importante (moyenne entreprise, secteurs « infrastructure numérique » et « gestion des services TIC »)"
+  },
+  "composants": [
+    {
+      "code": "SAN-A",
+      "nom": "Baie de stockage du DC1",
+      "tiers": "Ardoise Stockage (maintenance et assistance à distance)"
+    },
+    {
+      "code": "VIRT-1",
+      "nom": "Cluster de virtualisation du DC1",
+      "tiers": null
+    },
+    {
+      "code": "VIRT-2",
+      "nom": "Cluster de virtualisation de secours du DC2",
+      "tiers": null
+    },
+    {
+      "code": "RESEAU-DC1",
+      "nom": "Réseau et transit internet du DC1",
+      "tiers": "FibreMont Télécom (transit et filtrage)"
+    },
+    {
+      "code": "ENERGIE-DC1",
+      "nom": "Alimentation électrique et groupes du DC1",
+      "tiers": "Watteo Énergie (fourniture d'électricité)"
+    },
+    {
+      "code": "SAUV-DC2",
+      "nom": "Sauvegardes répliquées au DC2",
+      "tiers": null
+    },
+    {
+      "code": "IAM",
+      "nom": "Annuaire et bastion d'administration",
+      "tiers": null
+    },
+    {
+      "code": "SUPERV",
+      "nom": "Supervision et alertes (NOC)",
+      "tiers": null
+    }
+  ],
+  "services": [
+    {
+      "code": "CFU-WEB",
+      "client": "CFU",
+      "nom": "Banque en ligne (portail des clients)",
+      "type": "infogerance",
+      "criticite": 1,
+      "gtr_minutes": 60,
+      "utilisateurs": 85000,
+      "dependances": [
+        {
+          "composant": "VIRT-1",
+          "mode": "bloquant"
+        },
+        {
+          "composant": "SAN-A",
+          "mode": "bloquant"
+        },
+        {
+          "composant": "RESEAU-DC1",
+          "mode": "bloquant"
+        }
+      ]
+    },
+    {
+      "code": "CFU-SAUV",
+      "client": "CFU",
+      "nom": "Sauvegarde externalisée",
+      "type": "infogerance",
+      "criticite": 1,
+      "gtr_minutes": 240,
+      "utilisateurs": 40,
+      "dependances": [
+        {
+          "composant": "SAUV-DC2",
+          "mode": "bloquant"
+        }
+      ]
+    },
+    {
+      "code": "PPAY-PSP",
+      "client": "PPAY",
+      "nom": "Passerelle de paiement des commerçants",
+      "type": "infogerance",
+      "criticite": 1,
+      "gtr_minutes": 30,
+      "utilisateurs": 1200,
+      "dependances": [
+        {
+          "composant": "VIRT-1",
+          "mode": "bloquant"
+        },
+        {
+          "composant": "SAN-A",
+          "mode": "bloquant"
+        },
+        {
+          "composant": "RESEAU-DC1",
+          "mode": "bloquant"
+        }
+      ]
+    },
+    {
+      "code": "MFA-GED",
+      "client": "MFA",
+      "nom": "Gestion électronique des dossiers sinistres",
+      "type": "infogerance",
+      "criticite": 1,
+      "gtr_minutes": 120,
+      "utilisateurs": 240,
+      "dependances": [
+        {
+          "composant": "VIRT-1",
+          "mode": "bloquant"
+        },
+        {
+          "composant": "SAN-A",
+          "mode": "bloquant"
+        },
+        {
+          "composant": "SAUV-DC2",
+          "mode": "redondant"
+        }
+      ]
+    },
+    {
+      "code": "MFA-EXT",
+      "client": "MFA",
+      "nom": "Extranet des adhérents",
+      "type": "infogerance",
+      "criticite": 2,
+      "gtr_minutes": 240,
+      "utilisateurs": 61000,
+      "dependances": [
+        {
+          "composant": "VIRT-1",
+          "mode": "bloquant"
+        },
+        {
+          "composant": "SAN-A",
+          "mode": "bloquant"
+        }
+      ]
+    },
+    {
+      "code": "CSL-DPI",
+      "client": "CSL",
+      "nom": "Serveurs du dossier patient (colocation)",
+      "type": "colocation",
+      "criticite": 1,
+      "gtr_minutes": 60,
+      "utilisateurs": 900,
+      "dependances": [
+        {
+          "composant": "RESEAU-DC1",
+          "mode": "bloquant"
+        },
+        {
+          "composant": "ENERGIE-DC1",
+          "mode": "bloquant"
+        }
+      ]
+    },
+    {
+      "code": "VALF-PAIE",
+      "client": "VALF",
+      "nom": "Serveur de paie",
+      "type": "infogerance",
+      "criticite": 2,
+      "gtr_minutes": 240,
+      "utilisateurs": 65,
+      "dependances": [
+        {
+          "composant": "VIRT-1",
+          "mode": "bloquant"
+        },
+        {
+          "composant": "SAN-A",
+          "mode": "bloquant"
+        }
+      ]
+    },
+    {
+      "code": "MESS",
+      "client": "SEV",
+      "nom": "Messagerie hébergée (38 PME)",
+      "type": "infogerance",
+      "criticite": 2,
+      "gtr_minutes": 240,
+      "utilisateurs": 1900,
+      "dependances": [
+        {
+          "composant": "VIRT-1",
+          "mode": "bloquant"
+        },
+        {
+          "composant": "SAN-A",
+          "mode": "bloquant"
+        }
+      ]
+    },
+    {
+      "code": "MUTU",
+      "client": "SEV",
+      "nom": "Hébergement web mutualisé (62 sites)",
+      "type": "infogerance",
+      "criticite": 3,
+      "gtr_minutes": 480,
+      "utilisateurs": 62,
+      "dependances": [
+        {
+          "composant": "VIRT-1",
+          "mode": "bloquant"
+        },
+        {
+          "composant": "SAN-A",
+          "mode": "bloquant"
+        },
+        {
+          "composant": "RESEAU-DC1",
+          "mode": "redondant"
+        }
+      ]
+    }
+  ],
+  "contrats": [
+    {
+      "client": "CFU",
+      "nom": "Crédit Furanais",
+      "entite": "Établissement de crédit",
+      "dora": true,
+      "autorite": "ACPR",
+      "etats_membres": [
+        "FR"
+      ],
+      "delai_notification_minutes": 60,
+      "localisation": "France (DC1, DC2)"
+    },
+    {
+      "client": "PPAY",
+      "nom": "PilatPay",
+      "entite": "Établissement de paiement",
+      "dora": true,
+      "autorite": "ACPR",
+      "etats_membres": [
+        "FR",
+        "BE"
+      ],
+      "delai_notification_minutes": 30,
+      "localisation": "France (DC1, DC2)"
+    },
+    {
+      "client": "MFA",
+      "nom": "Mutuelle Forézienne d'Assurance",
+      "entite": "Entreprise d'assurance",
+      "dora": true,
+      "autorite": "ACPR",
+      "etats_membres": [
+        "FR"
+      ],
+      "delai_notification_minutes": 120,
+      "localisation": "France (DC1, DC2)"
+    },
+    {
+      "client": "CSL",
+      "nom": "Clinique Saint-Lys",
+      "entite": "Établissement de santé (données de santé : hébergeur certifié HDS)",
+      "dora": false,
+      "autorite": "ANSSI (NIS 2) ; ARS",
+      "etats_membres": [
+        "FR"
+      ],
+      "delai_notification_minutes": 120,
+      "localisation": "France (DC1)"
+    },
+    {
+      "client": "VALF",
+      "nom": "Valfurens Conseil",
+      "entite": "Cabinet d'expertise comptable",
+      "dora": false,
+      "autorite": null,
+      "etats_membres": [
+        "FR"
+      ],
+      "delai_notification_minutes": 240,
+      "localisation": "France (DC1, DC2)"
+    }
+  ],
+  "notifications": [
+    {
+      "code": "ANSSI-ALERTE",
+      "destinataire": "ANSSI",
+      "objet": "Alerte précoce (NIS 2, art. 23.4 a) : incident important, malveillance suspectée ou non, effet transfrontière",
+      "regle": "nis2",
+      "delai_minutes": 1440,
+      "depend_de": null,
+      "client": null
+    },
+    {
+      "code": "ANSSI-NOTIF",
+      "destinataire": "ANSSI",
+      "objet": "Notification d'incident (NIS 2, art. 23.4 b) : première évaluation, gravité, impact, indicateurs de compromission",
+      "regle": "nis2",
+      "delai_minutes": 4320,
+      "depend_de": "ANSSI-ALERTE",
+      "client": null
+    },
+    {
+      "code": "ANSSI-FINAL",
+      "destinataire": "ANSSI",
+      "objet": "Rapport final (NIS 2, art. 23.4 d) : cause, mesures, effet transfrontière — validé par la direction",
+      "regle": "nis2_final",
+      "delai_minutes": null,
+      "depend_de": "ANSSI-NOTIF",
+      "client": null
+    },
+    {
+      "code": "CLIENT-CFU",
+      "destinataire": "Crédit Furanais",
+      "objet": "DORA, art. 30 : notification contractuelle à l'entité financière",
+      "regle": "contrat",
+      "delai_minutes": 60,
+      "depend_de": null,
+      "client": "CFU"
+    },
+    {
+      "code": "CLIENT-PPAY",
+      "destinataire": "PilatPay",
+      "objet": "DORA, art. 30 : notification contractuelle à l'entité financière",
+      "regle": "contrat",
+      "delai_minutes": 30,
+      "depend_de": null,
+      "client": "PPAY"
+    },
+    {
+      "code": "CLIENT-MFA",
+      "destinataire": "Mutuelle Forézienne d'Assurance",
+      "objet": "DORA, art. 30 : notification contractuelle à l'entité financière",
+      "regle": "contrat",
+      "delai_minutes": 120,
+      "depend_de": null,
+      "client": "MFA"
+    },
+    {
+      "code": "CLIENT-CSL",
+      "destinataire": "Clinique Saint-Lys",
+      "objet": "Information du client (NIS 2, art. 23.1 et contrat)",
+      "regle": "contrat",
+      "delai_minutes": 120,
+      "depend_de": null,
+      "client": "CSL"
+    },
+    {
+      "code": "CLIENT-VALF",
+      "destinataire": "Valfurens Conseil",
+      "objet": "Information du client (NIS 2, art. 23.1 et contrat)",
+      "regle": "contrat",
+      "delai_minutes": 240,
+      "depend_de": null,
+      "client": "VALF"
+    }
+  ]
+}

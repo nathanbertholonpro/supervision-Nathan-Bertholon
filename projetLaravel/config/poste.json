@@ -1,0 +1,9 @@
+{
+    "nom": "Poste du centre de supervision (4 moniteurs)",
+    "moniteurs": [
+        { "numero": 1, "vue": "services",      "position": "haut-gauche" },
+        { "numero": 2, "vue": "journal",       "position": "haut-droite" },
+        { "numero": 3, "vue": "notifications", "position": "bas-gauche" },
+        { "numero": 4, "vue": "tiers",         "position": "bas-droite" }
+    ]
+}

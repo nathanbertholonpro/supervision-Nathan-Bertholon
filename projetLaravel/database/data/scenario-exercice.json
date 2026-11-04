@@ -1,0 +1,175 @@
+{
+  "description": "Exercice de supervision du mardi 9 mars 2027, 09:00-13:00 : rejeu de l'incident INC-2027-031.",
+  "injects": [
+    {
+      "heure": "2027-03-09 09:04",
+      "categorie": "fait",
+      "titre": "Alerte de la supervision : latence anormale sur la baie de stockage SAN-A du DC1.",
+      "donnees": {
+        "composants": {
+          "SAN-A": "degrade"
+        }
+      }
+    },
+    {
+      "heure": "2027-03-09 09:12",
+      "categorie": "fait",
+      "titre": "L'éditeur Ardoise Stockage indique que son équipe d'assistance a installé cette nuit, à distance, le micrologiciel 7.4 sur la baie SAN-A.",
+      "donnees": null
+    },
+    {
+      "heure": "2027-03-09 09:18",
+      "categorie": "fait",
+      "titre": "Le cluster VIRT-1 perd l'accès à ses volumes : les machines virtuelles s'arrêtent.",
+      "donnees": {
+        "composants": {
+          "SAN-A": "hors_service",
+          "VIRT-1": "hors_service"
+        },
+        "services": {
+          "CFU-WEB": "indisponible",
+          "PPAY-PSP": "indisponible",
+          "MFA-GED": "indisponible",
+          "MFA-EXT": "indisponible",
+          "VALF-PAIE": "indisponible",
+          "MESS": "indisponible",
+          "MUTU": "indisponible"
+        },
+        "detection": true
+      }
+    },
+    {
+      "heure": "2027-03-09 09:26",
+      "categorie": "decision",
+      "titre": "Thomas Guérin, chef d'équipe NOC, ouvre l'incident INC-2027-031 et appelle le RSSI.",
+      "donnees": null
+    },
+    {
+      "heure": "2027-03-09 09:35",
+      "categorie": "fait",
+      "titre": "PilatPay appelle : les paiements de ses 1 200 commerçants échouent, en France et en Belgique.",
+      "donnees": null
+    },
+    {
+      "heure": "2027-03-09 09:50",
+      "categorie": "decision",
+      "titre": "Karim Belaïd, RSSI, qualifie l'incident d'important au sens de NIS 2 : les délais de notification à l'ANSSI commencent.",
+      "donnees": {
+        "qualification": true
+      }
+    },
+    {
+      "heure": "2027-03-09 10:05",
+      "categorie": "fait",
+      "titre": "Attaque par déni de service sur le lien internet du DC1 : le trafic est filtré, le réseau ralentit.",
+      "donnees": {
+        "composants": {
+          "RESEAU-DC1": "degrade"
+        },
+        "services": {
+          "CSL-DPI": "degrade"
+        }
+      }
+    },
+    {
+      "heure": "2027-03-09 10:10",
+      "categorie": "fait",
+      "titre": "Le SOC détecte des connexions à la console d'administration de la baie avec le compte d'assistance de l'éditeur, depuis une adresse inconnue.",
+      "donnees": {
+        "malveillance": true
+      }
+    },
+    {
+      "heure": "2027-03-09 10:20",
+      "categorie": "decision",
+      "titre": "Bascule des services critiques vers le site de secours DC2 (plan de reprise informatique).",
+      "donnees": {
+        "composants": {
+          "VIRT-2": "secours"
+        }
+      }
+    },
+    {
+      "heure": "2027-03-09 10:40",
+      "categorie": "fait",
+      "titre": "Le Crédit Furanais demande par écrit les informations nécessaires pour classifier l'incident (DORA).",
+      "donnees": null
+    },
+    {
+      "heure": "2027-03-09 11:00",
+      "categorie": "fait",
+      "titre": "Le compte d'assistance de l'éditeur est désactivé ; Ardoise Stockage confirme la compromission de son outil d'assistance à distance.",
+      "donnees": {
+        "composants": {
+          "IAM": "degrade"
+        }
+      }
+    },
+    {
+      "heure": "2027-03-09 11:20",
+      "categorie": "fait",
+      "titre": "Le portail du Crédit Furanais fonctionne depuis le DC2, en mode dégradé.",
+      "donnees": {
+        "services": {
+          "CFU-WEB": "degrade"
+        }
+      }
+    },
+    {
+      "heure": "2027-03-09 11:35",
+      "categorie": "fait",
+      "titre": "La passerelle de PilatPay fonctionne depuis le DC2.",
+      "donnees": {
+        "services": {
+          "PPAY-PSP": "degrade"
+        }
+      }
+    },
+    {
+      "heure": "2027-03-09 11:40",
+      "categorie": "fait",
+      "titre": "Le filtrage du fournisseur de transit absorbe l'attaque : le réseau du DC1 est rétabli.",
+      "donnees": {
+        "composants": {
+          "RESEAU-DC1": "operationnel"
+        },
+        "services": {
+          "CSL-DPI": "normal"
+        }
+      }
+    },
+    {
+      "heure": "2027-03-09 11:50",
+      "categorie": "fait",
+      "titre": "Un média économique régional titre : « Panne géante chez un hébergeur stéphanois, des paiements bloqués ».",
+      "donnees": {
+        "reputation": true
+      }
+    },
+    {
+      "heure": "2027-03-09 12:10",
+      "categorie": "fait",
+      "titre": "La GED des sinistres de la Mutuelle Forézienne et le serveur de paie de Valfurens redémarrent au DC2.",
+      "donnees": {
+        "services": {
+          "MFA-GED": "degrade",
+          "VALF-PAIE": "degrade"
+        }
+      }
+    },
+    {
+      "heure": "2027-03-09 12:30",
+      "categorie": "fait",
+      "titre": "Première estimation des pertes directes (pénalités contractuelles, renforts, remplacement de la baie) : 620 000 €.",
+      "donnees": {
+        "pertes": 620000
+      }
+    },
+    {
+      "heure": "2027-03-09 12:45",
+      "categorie": "decision",
+      "titre": "Fin de la phase aiguë. La messagerie, l'extranet de la mutuelle et l'hébergement mutualisé attendent la restauration de la baie, estimée à 36 heures.",
+      "donnees": null
+    }
+  ]
+}
